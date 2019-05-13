@@ -23,12 +23,11 @@ height=50
 margin = 5
 
 grid=[]
-for row in range(20):
+for row in range(12):
     grid.append([])
-    for column in range(20):
+    for column in range(12):
         grid[row].append(0) # Append a cell
 
-grid[1][5] = 1
 
 # Set title of screen
 pygame.display.set_caption("Memory Game")
@@ -39,6 +38,10 @@ done=False
 # Used to manage how fast the screen updates
 clock=pygame.time.Clock()
 
+def cards():
+    cards = []
+    card1 = pygame.draw.rect(screen,red,[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+#make board smaller, and dup the cards list
 while done==False:
     for event in pygame.event.get(): # User did something
         if event.type == pygame.QUIT: # If user clicked close
@@ -56,11 +59,11 @@ while done==False:
 
 
     # Draw the grid
-    for row in range(10):
-        for column in range(10):
+    for row in range(6):
+        for column in range(6):
             color = SKY_BLUE
             if grid[row][column] == 1:
-                color = WHITE
+                color = RED
             pygame.draw.rect(screen,color,[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
 
     # Limit to 20 frames per second
