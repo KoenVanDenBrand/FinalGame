@@ -30,9 +30,11 @@ margin = 5
 
 grid=[0]
 
+match = 0
 
 #keeps track of selection 1 and 2
-selection = 0
+selection1 = False
+selection2 = False
 
 # Set title of screen
 pygame.display.set_caption("Memory Game")
@@ -98,23 +100,217 @@ while done==False:
     # Draw the grid
     for row in range(4):
         for column in range(4):
-            pygame.draw.rect(screen,cards[card_position],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
-            card_position = card_position + 1
-    for row in range(4):
-        for column in range(4):
             pygame.draw.rect(screen,backcard[back_cardposition],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
             back_cardposition = back_cardposition + 1
     if event.type == pygame.MOUSEBUTTONDOWN:
         column=pos[0] // (width+margin)
         row=pos[1] // (height+margin)
+
         if row == 0 and column == 0:
-            pygame.draw.rect(screen,cards[0],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+            backcard[0] = cards[0]
+            pygame.draw.rect(screen,backcard[0],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+            if selection1 == False:
+                selection1 = True
+                color1 = cards[0]
+                value1 = 0
+            if selection1 == True and selection2 == False:
+                selection2 == True
+                color2 = cards[0]
+                value2 = 0
+
         if row == 0 and column == 1:
-            pygame.draw.rect(screen,cards[1],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+            backcard[1] = cards[1]
+            pygame.draw.rect(screen,backcard[1],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+            if selection1 == False:
+                selection1 = True
+                color1 = cards[1]
+                value1 = 1
+            if selection1 == True and selection2 == False:
+                selection2 == True
+                color2 = cards[1]
+                value2 = 1
+
         if row == 0 and column == 2:
-            pygame.draw.rect(screen,cards[2],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+            backcard[2] = cards[2]
+            pygame.draw.rect(screen,backcard[2],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+            if selection1 == False:
+                selection1 = True
+                color1 =cards[2]
+                value1 = 2
+            if selection1 == True and selection2 == False:
+                selection2 == True
+                color2 =cards[2]
+                value2 = 2
         if row == 0 and column == 3:
-            pygame.draw.rect(screen,cards[3],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+            backcard[3] = cards[3]
+            pygame.draw.rect(screen,backcard[3],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+            if selection1 == False:
+                selection1 = True
+                color1 =cards[3]
+                value1 = 3
+            if selection1 == True and selection2 == False:
+                selection2 == True
+                color2 =cards[3]
+                value2 = 3
+
+        if row == 1 and column == 0:
+            backcard[4] = cards[4]
+            pygame.draw.rect(screen,backcard[4],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+            if selection1 == False:
+                selection1 = True
+                color1 =cards[4]
+                value1 = 4
+            if selection1 == True and selection2 == False:
+                selection2 == True
+                color2 =cards[4]
+                value2 = 4
+
+        if row == 1 and column == 1:
+            backcard[5] = cards[5]
+            pygame.draw.rect(screen,backcard[5],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+            if selection1 == False:
+                selection1 = True
+                color1 =cards[5]
+                value1 = 5
+            if selection1 == True and selection2 == False:
+                selection2 == True
+                color2 =cards[5]
+                value2 = 5
+
+        if row == 1 and column == 2:
+            backcard[6] = cards[6]
+            pygame.draw.rect(screen,backcard[6],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+            if selection1 == False:
+                selection1 = True
+                color1 =cards[6]
+                value1 = 6
+            if selection1 == True and selection2 == False:
+                selection2 == True
+                color2 =cards[6]
+                value2 = 6
+
+        if row == 1 and column == 3:
+            backcard[7] = cards[7]
+            pygame.draw.rect(screen,backcard[7],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+            if selection1 == False:
+                selection1 = True
+                color1 =cards[7]
+                value1 = 7
+            if selection1 == True and selection2 == False:
+                selection2 == True
+                color2 =cards[7]
+                value2 = 7
+
+        if row == 2 and column == 0:
+            backcard[8] = cards[8]
+            pygame.draw.rect(screen,backcard[8],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+            if selection1 == False:
+                selection1 = True
+                color1 =cards[8]
+                value1 = 8
+            if selection1 == True and selection2 == False:
+                selection2 == True
+                color2 =cards[8]
+                value2 = 8
+
+        if row == 2 and column == 1:
+            backcard[9] = cards[9]
+            pygame.draw.rect(screen,backcard[9],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+            if selection1 == False:
+                selection1 = True
+                color1 =cards[9]
+                value1 = 9
+            if selection1 == True and selection2 == False:
+                selection2 == True
+                color2 =cards[9]
+                value2 = 9
+
+        if row == 2 and column == 2:
+            backcard[10] = cards[10]
+            pygame.draw.rect(screen,backcard[10],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+            if selection1 == False:
+                selection1 = True
+                color1 =cards[10]
+                value1 = 10
+            if selection1 == True and selection2 == False:
+                selection2 == True
+                color2 =cards[10]
+                value2 = 10
+
+        if row == 2 and column == 3:
+            backcard[11] = cards[11]
+            pygame.draw.rect(screen,backcard[11],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+            if selection1 == False:
+                selection1 = True
+                color1 =cards[11]
+                value1 = 11
+            if selection1 == True and selection2 == False:
+                selection2 == True
+                color2 =cards[11]
+                value1 == 11
+
+        if row == 3 and column == 0:
+            backcard[12] = cards[12]
+            pygame.draw.rect(screen,backcard[12],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+            if selection1 == False:
+                selection1 = True
+                color1 =cards[12]
+                value1 = 12
+            if selection1 == True and selection2 == False:
+                selection2 == True
+                color2 =cards[12]
+                value2 = 12
+
+        if row == 3 and column == 1:
+            backcard[13] = cards[13]
+            pygame.draw.rect(screen,backcard[13],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+            if selection1 == False:
+                selection1 = True
+                color1 =cards[13]
+                value1 = 13
+            if selection1 == True and selection2 == False:
+                selection2 == True
+                color2 =cards[13]
+                value2 = 13
+
+        if row == 3 and column == 2:
+            backcard[14] = cards[14]
+            pygame.draw.rect(screen,backcard[14],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+            if selection1 == False:
+                selection1 = True
+                color1 =cards[14]
+                value1 = 14
+            if selection1 == True and selection2 == False:
+                selection2 == True
+                color2 =cards[14]
+                value2 = 14
+
+        if row == 3 and column == 3:
+            backcard[15] = cards[15]
+            pygame.draw.rect(screen,backcard[15],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+            if selection1 == False:
+                selection1 = True
+                color1 =cards[15]
+                value1 = 15
+            if selection1 == True and selection2 == False:
+                selection2 == True
+                color2 =cards[15]
+                value2 = 15
+
+        if color1 == color2:
+            match == match + 1
+            print(match)
+
+        print(selection1)
+        print(selection2)
+        if color1 != color2:
+            pygame.draw.rect(screen,backcard[value1],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+            pygame.draw.rect(screen,backcard[value2],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+
+        if selection1 and selection2 == True:
+            selection1 = False
+            selection2 = False
+
 
     # Limit to 20 frames per second
     clock.tick(20)
