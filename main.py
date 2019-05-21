@@ -3,10 +3,12 @@ from pygame.locals import *
 import time
 
 
-size=[500,500]
+size=[225,300]
 pygame.init()
 screen=pygame.display.set_mode(size)
 
+BASICFONT = pygame.font.Font('freesansbold.ttf', 30)
+Surf = BASICFONT.render("YOU WON!", 1, (255,255,255))
 # Colors
 LIME = (0,255,0)
 RED = (255, 0, 0)
@@ -294,18 +296,25 @@ while done==False:
         for column in range(4):
             pygame.draw.rect(screen,backcard[back_cardposition],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
             back_cardposition = back_cardposition + 1
-            #pygame.draw.rect(screen,backcard[value1],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
-            #pygame.draw.rect(screen,backcard[value2],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
 
+    time.sleep(0.3)
+    pygame.display.flip()
     if selection1 == True and selection2 == True:
         if color1 != color2:
             backcard[value1] = SKY_BLUE
             backcard[value2] = SKY_BLUE
         else:
             match = match + 1
-                #print(match)
         selection1 = False
         selection2 = False
+
+    if match == 8:
+        screen.blit(Surf,(35 ,240))  #displays the gameover screen
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+
 
 
     # Limit to 20 frames per second
