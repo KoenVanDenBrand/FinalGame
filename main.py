@@ -88,35 +88,14 @@ cards = cards * 2
 random.shuffle(cards)
 
 Menu = True
+
 #make board smaller, and dup the cards list
 while done==False:
-    while Menu == True:
-            screen.fill(BLACK)
-            myfont=pygame.font.SysFont("Britannic Bold", 20)
-            startlabel=myfont.render("WELCOME TO MEMORY", 1, (255, 255, 255))
-            startlabel4 = myfont.render("Press [SPACEBAR] to start", 1, (255, 255, 255))
-            startlabel2 = myfont.render("You have to find 8 matches", 1,(255,255,255,))
-            startlabel3 = myfont.render("Click boxes to reveal it's color!", 1,(255,255,255))
-            screen.blit(startlabel,(38,70))
-            screen.blit(startlabel2,(32,100))
-            screen.blit(startlabel3,(23,120))
-            screen.blit(startlabel4,(31,160))
-            for event in pygame.event.get():
-                if event.type==KEYDOWN:
-                    if event.key == K_SPACE:
-                        Menu = False
-                        screen.fill(BLACK)
-            pygame.display.flip()
-    for event in pygame.event.get(): # User did something
-        if event.type == pygame.QUIT: # If user clicked close
-            done=True
-            pygame.quit()
-            sys.exit()
-        if event.type == pygame.MOUSEBUTTONDOWN:
+    for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN and not Menu:
             pos = pygame.mouse.get_pos()
             column=pos[0] // (width+margin)
             row=pos[1] // (height+margin)
-
             if row == 0 and column == 0:
                 backcard[0] = cards[0]
                 pygame.draw.rect(screen,backcard[0],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
@@ -306,36 +285,66 @@ while done==False:
                 elif selection1 == True and selection2 == False:
                     selection2 = True
                     color2 = cards[15]
-                    value2 = 15
+                    value2 = 15 # User did something
+            pygame.display.flip()
+        if event.type==KEYDOWN:
+            if event.key == K_SPACE:
+                Menu = False
+                screen.fill(BLACK)
+        if event.type == pygame.QUIT: # If user clicked close
+            done=True
+            pygame.quit()
+            sys.exit()
 
-    back_cardposition = 0
-    card_position = 0
-    # Draw the grid
-    for row in range(4):
-        for column in range(4):
-            pygame.draw.rect(screen,backcard[back_cardposition],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
-            back_cardposition = back_cardposition + 1
+    if Menu == True:
+        screen.fill(BLACK)
+        myfont=pygame.font.SysFont("Britannic Bold", 20)
+        startlabel=myfont.render("WELCOME TO MEMORY", 1, (255, 255, 255))
+        startlabel4 = myfont.render("Press [SPACEBAR] to start", 1, (255, 255, 255))
+        startlabel2 = myfont.render("You have to find 8 matches", 1,(255,255,255,))
+        startlabel3 = myfont.render("Click boxes to reveal it's color!", 1,(255,255,255))
+        screen.blit(startlabel,(38,70))
+        screen.blit(startlabel2,(32,100))
+        screen.blit(startlabel3,(23,120))
+        screen.blit(startlabel4,(31,160))
+        """for event in pygame.event.get():
+            if event.type==KEYDOWN:
+                if event.key == K_SPACE:
+                    Menu = False
+                    screen.fill(BLACK)
+            if event.type == pygame.QUIT: # If user clicked close
+                done=True
+                pygame.quit()
+                sys.exit()
+            pygame.display.flip()"""
+    else:
+        back_cardposition = 0
+        card_position = 0
+        # Draw the grid
+        for row in range(4):
+            for column in range(4):
+                pygame.draw.rect(screen,backcard[back_cardposition],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
+                back_cardposition = back_cardposition + 1
 
-    time.sleep(0.3)
-    pygame.display.flip()
-    if selection1 == True and selection2 == True:
-        if color1 != color2:
-            backcard[value1] = SKY_BLUE
-            backcard[value2] = SKY_BLUE
-        else:
-            match = match + 1
-        selection1 = False
-        selection2 = False
+        time.sleep(0.3)
+        pygame.display.flip()
 
-    pygame.draw.rect(screen, WHITE, [5, 225, 215, 70], 3)
-    if match == 8:
-            screen.blit(Surf2,(35 ,250))
-            for event in pygame.event.get():
-                if event.type == QUIT:
-                    pygame.quit()
-                    sys.exit()
+        if selection1 == True and selection2 == True:
+            if color1 != color2:
+                backcard[value1] = SKY_BLUE
+                backcard[value2] = SKY_BLUE
+            else:
+                match = match + 1
+            selection1 = False
+            selection2 = False
 
-
+        pygame.draw.rect(screen, WHITE, [5, 225, 215, 70], 3)
+        if match == 8:
+                screen.blit(Surf2,(35 ,250))
+                """for event in pygame.event.get():
+                    if event.type == QUIT:
+                        pygame.quit()
+                        sys.exit()"""
 
     # Limit to 20 frames per second
     clock.tick(20)
