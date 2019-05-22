@@ -10,13 +10,13 @@ screen=pygame.display.set_mode(size)
 BASICFONT = pygame.font.Font('freesansbold.ttf', 30)
 Surf = BASICFONT.render("YOU WON!", 1, (255,255,255))
 # Colors
-LIME = (0,255,0)
+GRAY = (0,255,0)
 RED = (255, 0, 0)
 BLACK = (0,0,0)
 LIGHT_BLUE = (47,208,240)
 SALMON = (255,192,203)
 WHITE = (255,255,255)
-LIGHT_GREEN = (90, 228, 32)
+LIGHT_GREEN = (160, 160, 160)
 SKY_BLUE = (176, 226, 255)
 PURPLE = (153,51,255)
 ORANGE = (255,128,0)
@@ -70,7 +70,7 @@ value2 = 0
 cards = []
 card1 = RED
 cards.append(card1)
-card2 = LIME
+card2 = GRAY
 cards.append(card2)
 card3 = LIGHT_BLUE
 cards.append(card3)
@@ -308,8 +308,9 @@ while done==False:
         selection1 = False
         selection2 = False
 
+    pygame.draw.rect(screen, WHITE, [5, 225, 215, 70], 3)
     if match == 8:
-        screen.blit(Surf,(35 ,240))  #displays the gameover screen
+            screen.blit(Surf2,(35 ,250))
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
