@@ -86,8 +86,27 @@ card8 = YELLOW
 cards.append(card8)
 cards = cards * 2
 random.shuffle(cards)
+
+Menu = True
 #make board smaller, and dup the cards list
 while done==False:
+    while Menu == True:
+            screen.fill(BLACK)
+            myfont=pygame.font.SysFont("Britannic Bold", 20)
+            startlabel=myfont.render("WELCOME TO MEMORY", 1, (255, 255, 255))
+            startlabel4 = myfont.render("Press [SPACEBAR] to start", 1, (255, 255, 255))
+            startlabel2 = myfont.render("You have to find 8 matches", 1,(255,255,255,))
+            startlabel3 = myfont.render("Click boxes to reveal it's color!", 1,(255,255,255))
+            screen.blit(startlabel,(38,70))
+            screen.blit(startlabel2,(32,100))
+            screen.blit(startlabel3,(23,120))
+            screen.blit(startlabel4,(31,160))
+            for event in pygame.event.get():
+                if event.type==KEYDOWN:
+                    if event.key == K_SPACE:
+                        Menu = False
+                        screen.fill(BLACK)
+            pygame.display.flip()
     for event in pygame.event.get(): # User did something
         if event.type == pygame.QUIT: # If user clicked close
             done=True
@@ -311,10 +330,10 @@ while done==False:
     pygame.draw.rect(screen, WHITE, [5, 225, 215, 70], 3)
     if match == 8:
             screen.blit(Surf2,(35 ,250))
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                pygame.quit()
-                sys.exit()
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    pygame.quit()
+                    sys.exit()
 
 
 
