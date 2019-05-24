@@ -2,7 +2,7 @@ import pygame, sys, time, random
 from pygame.locals import *
 import time
 
-
+#size of game
 size=[225,300]
 pygame.init()
 screen=pygame.display.set_mode(size)
@@ -30,7 +30,7 @@ height=50
 # Margin between each cell
 margin = 5
 
-match = 0
+match = 0 #matches needs to be at 8 to win
 
 #keeps track of selection 1 and 2
 selection1 = False
@@ -41,6 +41,7 @@ pygame.display.set_caption("Memory Game")
 
 #Keeps game going until done
 done=False
+#sets all the skyblue cards
 backcard = []
 card1_1 = SKY_BLUE
 backcard.append(card1_1)
@@ -62,11 +63,11 @@ backcard = backcard * 2
 # Used to manage how fast the screen updates
 clock=pygame.time.Clock()
 
-color1 = 0
-color2 = 1
-value1 = 0
-value2 = 0
-
+color1 = 0 #first color of card
+color2 = 1 #second color of card
+value1 = 0 #value of card 1
+value2 = 0 #value of card 2
+#sets a random colored card on grid
 cards = []
 card1 = RED
 cards.append(card1)
@@ -87,10 +88,10 @@ cards.append(card8)
 cards = cards * 2
 random.shuffle(cards)
 
-Menu = True
+Menu = True #start up menu
 
-#make board smaller, and dup the cards list
-while done==False:
+#game loop
+while done==False: #304-310 makes the menu or start
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN and not Menu:
             pos = pygame.mouse.get_pos()
@@ -307,20 +308,10 @@ while done==False:
         screen.blit(startlabel2,(32,100))
         screen.blit(startlabel3,(23,120))
         screen.blit(startlabel4,(31,160))
-        """for event in pygame.event.get():
-            if event.type==KEYDOWN:
-                if event.key == K_SPACE:
-                    Menu = False
-                    screen.fill(BLACK)
-            if event.type == pygame.QUIT: # If user clicked close
-                done=True
-                pygame.quit()
-                sys.exit()
-            pygame.display.flip()"""
     else:
         back_cardposition = 0
         card_position = 0
-        # Draw the grid
+        # Draw initial the grid of skyblue cards
         for row in range(4):
             for column in range(4):
                 pygame.draw.rect(screen,backcard[back_cardposition],[(margin+width)*column+margin,(margin+height)*row+margin,width,height])
@@ -328,23 +319,19 @@ while done==False:
 
         time.sleep(0.3)
         pygame.display.flip()
-
+#defines each selection and checks if color is the same
         if selection1 == True and selection2 == True:
             if color1 != color2:
                 backcard[value1] = SKY_BLUE
                 backcard[value2] = SKY_BLUE
-            else:
+            else: #if it is match = + 1 and selections are back to false
                 match = match + 1
             selection1 = False
             selection2 = False
 
-        pygame.draw.rect(screen, WHITE, [5, 225, 215, 70], 3)
+        pygame.draw.rect(screen, WHITE, [5, 225, 215, 70], 3) #white box to make it look neat
         if match == 8:
-                screen.blit(Surf2,(35 ,250))
-                """for event in pygame.event.get():
-                    if event.type == QUIT:
-                        pygame.quit()
-                        sys.exit()"""
+                screen.blit(Surf,(35 ,250)) #displays game won screen
 
     # Limit to 20 frames per second
     clock.tick(20)
